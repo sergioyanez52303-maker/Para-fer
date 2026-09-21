@@ -1,0 +1,44 @@
+document.addEventListener("DOMContentLoaded", () => {
+    const contenedor = document.querySelector(".galaxia-container");
+
+    // Lista de mensajes románticos para las flores
+    const mensajes = [
+        "Eres mi sol ☀️",
+        "Siempre juntos 💛",
+        "Mi Amor 👑",
+        "Te adoro ✨",
+        "Eres única 🌻",
+        "Mi complemento 🔗"
+    ];
+
+    // Generar flores de forma dinámica
+    mensajes.forEach((texto, index) => {
+        const florContenedor = document.createElement("div");
+        florContenedor.classList.add("Flores_Amarillas");
+
+        // Creamos el elemento visual de la flor (puedes cambiar el emoji por una imagen <img>)
+        const iconoFlor = document.createElement("div");
+        iconoFlor.classList.add("emoji-flor");
+        iconoFlor.innerText = "🌻"; 
+
+        // Creamos el texto de amor
+        const etiquetaTexto = document.createElement("span");
+        etiquetaTexto.innerText = texto;
+
+        florContenedor.appendChild(iconoFlor);
+        florContenedor.appendChild(etiquetaTexto);
+
+        // Variables CSS personalizadas para que cada flor tenga una órbita y velocidad distinta
+        const distanciaOrbita = 120 + index * 45; // Separa las capas de la galaxia
+        const tiempoAnimacion = 15 + index * 5;    // Diferentes velocidades
+
+        florContenedor.style.setProperty("--distancia", `${distanciaOrbita}px`);
+        florContenedor.style.animationDuration = `${tiempoAnimacion}s`;
+        
+        // Desfase de tiempo para que no arranquen todas alineadas
+        florContenedor.style.animationDelay = `-${index * 3}s`;
+
+        contenedor.appendChild(florContenedor);
+    });
+});
+
