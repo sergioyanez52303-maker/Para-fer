@@ -1,0 +1,1210 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Para Fer 🌻❤️</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+html,body{
+    width:100%;
+    height:100%;
+    overflow:hidden;
+}
+
+body{
+    background:#000;
+    font-family:Georgia,"Times New Roman",serif;
+    color:white;
+}
+
+/* =========================================
+   FONDO
+========================================= */
+
+#canvas{
+    position:fixed;
+    inset:0;
+    width:100%;
+    height:100%;
+    z-index:0;
+    background:
+        radial-gradient(
+            circle at 50% 48%,
+            #382700 0%,
+            #160f00 25%,
+            #050400 55%,
+            #000 100%
+        );
+}
+
+/* =========================================
+   BRILLO CENTRAL
+========================================= */
+
+.centerGlow{
+    position:absolute;
+    width:430px;
+    height:430px;
+    left:50%;
+    top:50%;
+    transform:translate(-50%,-50%);
+    border-radius:50%;
+
+    background:radial-gradient(
+        circle,
+        rgba(255,225,60,.28),
+        rgba(255,190,0,.12) 30%,
+        rgba(255,170,0,.04) 55%,
+        transparent 72%
+    );
+
+    filter:blur(8px);
+    z-index:1;
+
+    animation:centralGlow 3s ease-in-out infinite alternate;
+}
+
+@keyframes centralGlow{
+    from{
+        transform:translate(-50%,-50%) scale(.8);
+        opacity:.5;
+    }
+
+    to{
+        transform:translate(-50%,-50%) scale(1.2);
+        opacity:1;
+    }
+}
+
+/* =========================================
+   ESCENA
+========================================= */
+
+.scene{
+    position:relative;
+    width:100%;
+    height:100%;
+    z-index:2;
+    perspective:1000px;
+    overflow:hidden;
+}
+
+/* =========================================
+   CORAZÓN 3D
+========================================= */
+
+.heart{
+    position:absolute;
+    left:50%;
+    top:43%;
+
+    width:115px;
+    height:115px;
+
+    transform:
+        translate(-50%,-50%)
+        rotate(-45deg);
+
+    border-left:5px solid #ffd92f;
+    border-bottom:5px solid #ffd92f;
+
+    filter:
+        drop-shadow(0 0 5px #fff000)
+        drop-shadow(0 0 15px #ffd000)
+        drop-shadow(0 0 30px #ffad00)
+        drop-shadow(0 0 60px #ff9900);
+
+    animation:heartBeat 2.2s ease-in-out infinite;
+}
+
+.heart:before,
+.heart:after{
+    content:"";
+    position:absolute;
+
+    width:115px;
+    height:115px;
+
+    border:5px solid #ffd92f;
+    border-radius:50%;
+}
+
+.heart:before{
+    top:-60px;
+    left:-5px;
+
+    border-bottom-color:transparent;
+    border-right-color:transparent;
+
+    transform:rotate(45deg);
+}
+
+.heart:after{
+    top:-5px;
+    left:60px;
+
+    border-bottom-color:transparent;
+    border-left-color:transparent;
+
+    transform:rotate(45deg);
+}
+
+@keyframes heartBeat{
+
+    0%,100%{
+        transform:
+            translate(-50%,-50%)
+            rotate(-45deg)
+            scale(1);
+    }
+
+    50%{
+        transform:
+            translate(-50%,-50%)
+            rotate(-45deg)
+            scale(1.08);
+    }
+}
+
+/* =========================================
+   TEXTO CENTRAL
+========================================= */
+
+.centerText{
+    position:absolute;
+    left:50%;
+    top:43%;
+
+    width:92%;
+
+    transform:translate(-50%,-50%);
+
+    text-align:center;
+    z-index:20;
+}
+
+.centerText h1{
+
+    font-size:clamp(27px,8vw,58px);
+
+    color:#fff8ad;
+
+    letter-spacing:1px;
+
+    transform:
+        perspective(600px)
+        rotateX(7deg);
+
+    text-shadow:
+        1px 1px 0 #b88600,
+        2px 2px 0 #8c6700,
+        3px 3px 0 #654a00,
+        0 0 7px white,
+        0 0 15px #fff000,
+        0 0 30px #ffd000,
+        0 0 55px #ff9d00;
+
+    animation:textGlow 2s ease-in-out infinite alternate;
+}
+
+.centerText p{
+
+    margin-top:15px;
+
+    font-size:clamp(12px,3.5vw,21px);
+
+    color:#fff;
+
+    letter-spacing:1px;
+
+    text-shadow:
+        0 0 7px white,
+        0 0 15px #ffd000,
+        0 0 25px #ff9d00;
+}
+
+@keyframes textGlow{
+
+    from{
+        opacity:.8;
+    }
+
+    to{
+        opacity:1;
+    }
+}
+
+/* =========================================
+   FLORES
+========================================= */
+
+.flower{
+
+    position:absolute;
+
+    width:65px;
+    height:65px;
+
+    z-index:7;
+
+    transform-style:preserve-3d;
+
+    filter:
+        drop-shadow(0 7px 5px rgba(0,0,0,.7))
+        drop-shadow(0 0 12px #ffd000);
+
+    animation:flowerFloat 4s ease-in-out infinite;
+}
+
+.petal{
+
+    position:absolute;
+
+    width:25px;
+    height:39px;
+
+    left:20px;
+    top:12px;
+
+    border-radius:50%;
+
+    background:
+        linear-gradient(
+            135deg,
+            #fff36a,
+            #ffd000 55%,
+            #e9a600
+        );
+
+    box-shadow:
+        0 0 7px #fff000,
+        0 0 17px #ffc400;
+
+    transform-origin:50% 100%;
+}
+
+.petal:nth-child(1){
+    transform:rotate(0deg) translateY(-12px);
+}
+
+.petal:nth-child(2){
+    transform:rotate(45deg) translateY(-12px);
+}
+
+.petal:nth-child(3){
+    transform:rotate(90deg) translateY(-12px);
+}
+
+.petal:nth-child(4){
+    transform:rotate(135deg) translateY(-12px);
+}
+
+.petal:nth-child(5){
+    transform:rotate(180deg) translateY(-12px);
+}
+
+.petal:nth-child(6){
+    transform:rotate(225deg) translateY(-12px);
+}
+
+.petal:nth-child(7){
+    transform:rotate(270deg) translateY(-12px);
+}
+
+.petal:nth-child(8){
+    transform:rotate(315deg) translateY(-12px);
+}
+
+.flowerCenter{
+
+    position:absolute;
+
+    width:25px;
+    height:25px;
+
+    left:20px;
+    top:20px;
+
+    border-radius:50%;
+
+    background:
+        radial-gradient(
+            circle,
+            #8d4d00,
+            #522900
+        );
+
+    border:4px solid #ffdf31;
+
+    box-shadow:
+        0 0 8px #fff000,
+        0 0 18px #ffb700;
+
+    z-index:5;
+}
+
+@keyframes flowerFloat{
+
+    0%,100%{
+        margin-top:0;
+        rotate:-3deg;
+    }
+
+    50%{
+        margin-top:-10px;
+        rotate:4deg;
+    }
+}
+
+/* =========================================
+   POSICIONES DE FLORES
+========================================= */
+
+.f1{left:3%;top:12%;transform:scale(.75);}
+.f2{left:17%;top:25%;transform:scale(.52);animation-delay:.4s;}
+.f3{left:2%;top:63%;transform:scale(.85);animation-delay:.8s;}
+.f4{left:20%;top:76%;transform:scale(.55);animation-delay:1.2s;}
+
+.f5{right:3%;top:11%;transform:scale(.78);animation-delay:.5s;}
+.f6{right:18%;top:25%;transform:scale(.55);animation-delay:1s;}
+.f7{right:2%;top:62%;transform:scale(.82);animation-delay:1.5s;}
+.f8{right:19%;top:77%;transform:scale(.55);animation-delay:2s;}
+
+.f9{left:38%;top:7%;transform:scale(.45);animation-delay:1s;}
+.f10{right:37%;top:8%;transform:scale(.45);animation-delay:1.8s;}
+
+.f11{left:29%;top:54%;transform:scale(.4);animation-delay:2s;}
+.f12{right:29%;top:55%;transform:scale(.42);animation-delay:2.5s;}
+
+/* =========================================
+   MENSAJES
+========================================= */
+
+.message{
+
+    position:absolute;
+
+    max-width:170px;
+
+    text-align:center;
+
+    color:#fff8b0;
+
+    font-size:clamp(11px,3vw,18px);
+
+    line-height:1.4;
+
+    font-weight:bold;
+
+    z-index:15;
+
+    text-shadow:
+        0 0 5px white,
+        0 0 12px #ffe600,
+        0 0 25px #ffae00;
+
+    animation:messageFloat 4s ease-in-out infinite alternate;
+}
+
+.m1{
+    left:2%;
+    top:40%;
+}
+
+.m2{
+    right:2%;
+    top:40%;
+    animation-delay:1s;
+}
+
+.m3{
+    left:3%;
+    bottom:18%;
+    animation-delay:1.5s;
+}
+
+.m4{
+    right:3%;
+    bottom:18%;
+    animation-delay:2s;
+}
+
+.m5{
+    left:50%;
+    top:7%;
+    transform:translateX(-50%);
+    max-width:300px;
+    font-size:clamp(11px,2.8vw,17px);
+}
+
+.m6{
+    left:50%;
+    bottom:5%;
+    transform:translateX(-50%);
+    max-width:350px;
+    font-size:clamp(11px,3vw,17px);
+}
+
+@keyframes messageFloat{
+
+    from{
+        opacity:.65;
+        translate:0 0;
+    }
+
+    to{
+        opacity:1;
+        translate:0 -7px;
+    }
+}
+
+/* =========================================
+   PÉTALOS
+========================================= */
+
+.floatingPetal{
+
+    position:absolute;
+
+    width:9px;
+    height:17px;
+
+    border-radius:
+        70% 30% 70% 30%;
+
+    background:
+        linear-gradient(
+            135deg,
+            #fff36b,
+            #ffd000,
+            #e8a400
+        );
+
+    box-shadow:
+        0 0 7px #ffe600,
+        0 0 16px #ffb700;
+
+    z-index:5;
+
+    animation:petalFall linear infinite;
+}
+
+@keyframes petalFall{
+
+    0%{
+        transform:
+            translate3d(0,-30px,0)
+            rotate(0deg);
+
+        opacity:0;
+    }
+
+    10%{
+        opacity:1;
+    }
+
+    50%{
+        transform:
+            translate3d(45px,50vh,80px)
+            rotate(180deg);
+    }
+
+    100%{
+        transform:
+            translate3d(-50px,110vh,-80px)
+            rotate(360deg);
+
+        opacity:0;
+    }
+}
+
+/* =========================================
+   ESTRELLAS
+========================================= */
+
+.star{
+
+    position:absolute;
+
+    color:#fff;
+
+    z-index:6;
+
+    text-shadow:
+        0 0 5px white,
+        0 0 15px #ffe600,
+        0 0 30px #ffb700;
+
+    animation:starGlow 2s infinite alternate;
+}
+
+@keyframes starGlow{
+
+    0%{
+        opacity:.1;
+        transform:scale(.3) rotate(0deg);
+    }
+
+    50%{
+        opacity:1;
+    }
+
+    100%{
+        opacity:.2;
+        transform:scale(1.5) rotate(90deg);
+    }
+}
+
+/* =========================================
+   BRILLOS
+========================================= */
+
+.spark{
+
+    position:absolute;
+
+    width:4px;
+    height:4px;
+
+    border-radius:50%;
+
+    background:#fff;
+
+    z-index:8;
+
+    box-shadow:
+        0 0 6px white,
+        0 0 15px #ffe600,
+        0 0 28px #ffb700;
+
+    animation:spark 2s infinite alternate;
+}
+
+@keyframes spark{
+
+    from{
+        opacity:.1;
+        transform:scale(.3);
+    }
+
+    to{
+        opacity:1;
+        transform:scale(1.7);
+    }
+}
+
+/* =========================================
+   TEXTO INFERIOR
+========================================= */
+
+.footer{
+
+    position:absolute;
+
+    bottom:1.5%;
+
+    left:50%;
+
+    transform:translateX(-50%);
+
+    width:90%;
+
+    text-align:center;
+
+    color:#ffe97b;
+
+    font-size:10px;
+
+    letter-spacing:2px;
+
+    opacity:.75;
+
+    text-shadow:
+        0 0 8px #ffc400;
+
+    z-index:20;
+}
+
+/* =========================================
+   MÓVILES
+========================================= */
+
+@media(max-width:500px){
+
+    .heart{
+        width:105px;
+        height:105px;
+    }
+
+    .heart:before,
+    .heart:after{
+        width:105px;
+        height:105px;
+    }
+
+    .heart:before{
+        top:-55px;
+    }
+
+    .heart:after{
+        left:55px;
+    }
+
+    .message{
+        max-width:125px;
+    }
+
+    .m1,.m2{
+        top:39%;
+    }
+
+    .m3,.m4{
+        bottom:17%;
+    }
+
+    .centerText p{
+        margin-top:12px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<canvas id="canvas"></canvas>
+
+<div class="centerGlow"></div>
+
+<div class="scene">
+
+    <!-- =====================================
+         CORAZÓN
+    ====================================== -->
+
+    <div class="heart"></div>
+
+    <!-- =====================================
+         MENSAJE CENTRAL
+    ====================================== -->
+
+    <div class="centerText">
+
+        <h1>Te amo mucho, Fer ❤️</h1>
+
+        <p>
+            Mi lugar favorito siempre será a tu lado
+        </p>
+
+    </div>
+
+
+    <!-- =====================================
+         FLORES
+    ====================================== -->
+
+    <div class="flower f1">
+        <span class="petal"></span>
+        <span class="petal"></span>
+        <span class="petal"></span>
+        <span class="petal"></span>
+        <span class="petal"></span>
+        <span class="petal"></span>
+        <span class="petal"></span>
+        <span class="petal"></span>
+        <span class="flowerCenter"></span>
+    </div>
+
+    <div class="flower f2">
+        <span class="petal"></span><span class="petal"></span>
+        <span class="petal"></span><span class="petal"></span>
+        <span class="petal"></span><span class="petal"></span>
+        <span class="petal"></span><span class="petal"></span>
+        <span class="flowerCenter"></span>
+    </div>
+
+    <div class="flower f3">
+        <span class="petal"></span><span class="petal"></span>
+        <span class="petal"></span><span class="petal"></span>
+        <span class="petal"></span><span class="petal"></span>
+        <span class="petal"></span><span class="petal"></span>
+        <span class="flowerCenter"></span>
+    </div>
+
+    <div class="flower f4">
+        <span class="petal"></span><span class="petal"></span>
+        <span class="petal"></span><span class="petal"></span>
+        <span class="petal"></span><span class="petal"></span>
+        <span class="petal"></span><span class="petal"></span>
+        <span class="flowerCenter"></span>
+    </div>
+
+    <div class="flower f5">
+        <span class="petal"></span><span class="petal"></span>
+        <span class="petal"></span><span class="petal"></span>
+        <span class="petal"></span><span class="petal"></span>
+        <span class="petal"></span><span class="petal"></span>
+        <span class="flowerCenter"></span>
+    </div>
+
+    <div class="flower f6">
+        <span class="petal"></span><span class="petal"></span>
+        <span class="petal"></span><span class="petal"></span>
+        <span class="petal"></span><span class="petal"></span>
+        <span class="petal"></span><span class="petal"></span>
+        <span class="flowerCenter"></span>
+    </div>
+
+    <div class="flower f7">
+        <span class="petal"></span><span class="petal"></span>
+        <span class="petal"></span><span class="petal"></span>
+        <span class="petal"></span><span class="petal"></span>
+        <span class="petal"></span><span class="petal"></span>
+        <span class="flowerCenter"></span>
+    </div>
+
+    <div class="flower f8">
+        <span class="petal"></span><span class="petal"></span>
+        <span class="petal"></span><span class="petal"></span>
+        <span class="petal"></span><span class="petal"></span>
+        <span class="petal"></span><span class="petal"></span>
+        <span class="flowerCenter"></span>
+    </div>
+
+    <div class="flower f9">
+        <span class="petal"></span><span class="petal"></span>
+        <span class="petal"></span><span class="petal"></span>
+        <span class="petal"></span><span class="petal"></span>
+        <span class="petal"></span><span class="petal"></span>
+        <span class="flowerCenter"></span>
+    </div>
+
+    <div class="flower f10">
+        <span class="petal"></span><span class="petal"></span>
+        <span class="petal"></span><span class="petal"></span>
+        <span class="petal"></span><span class="petal"></span>
+        <span class="petal"></span><span class="petal"></span>
+        <span class="flowerCenter"></span>
+    </div>
+
+    <div class="flower f11">
+        <span class="petal"></span><span class="petal"></span>
+        <span class="petal"></span><span class="petal"></span>
+        <span class="petal"></span><span class="petal"></span>
+        <span class="petal"></span><span class="petal"></span>
+        <span class="flowerCenter"></span>
+    </div>
+
+    <div class="flower f12">
+        <span class="petal"></span><span class="petal"></span>
+        <span class="petal"></span><span class="petal"></span>
+        <span class="petal"></span><span class="petal"></span>
+        <span class="petal"></span><span class="petal"></span>
+        <span class="flowerCenter"></span>
+    </div>
+
+
+    <!-- =====================================
+         FRASES
+    ====================================== -->
+
+    <div class="message m1">
+        Estoy tan feliz<br>
+        de tenerte<br>
+        a mi lado ❤️
+    </div>
+
+    <div class="message m2">
+        Eres mi persona<br>
+        favorita 🌻
+    </div>
+
+    <div class="message m3">
+        Gracias por hacer<br>
+        mis días más<br>
+        bonitos ❤️
+    </div>
+
+    <div class="message m4">
+        Te mereces<br>
+        todo el amor<br>
+        del mundo 🌻
+    </div>
+
+    <div class="message m5">
+        Gracias por cada momento,<br>
+        cada sonrisa y cada abrazo.
+    </div>
+
+    <div class="message m6">
+        Un mes más juntos ❤️<br>
+        y deseo que sean<br>
+        muchísimos más.
+    </div>
+
+
+    <div class="footer">
+        PARA TI, FER • CON TODO MI AMOR 🌻
+    </div>
+
+</div>
+
+
+<script>
+
+/* =========================================
+   PARTÍCULAS DORADAS
+========================================= */
+
+const canvas =
+    document.getElementById("canvas");
+
+const ctx =
+    canvas.getContext("2d");
+
+let particles = [];
+
+let width;
+let height;
+
+function resize(){
+
+    width =
+        canvas.width =
+        window.innerWidth;
+
+    height =
+        canvas.height =
+        window.innerHeight;
+}
+
+resize();
+
+window.addEventListener(
+    "resize",
+    resize
+);
+
+
+class Particle{
+
+    constructor(){
+
+        this.x =
+            Math.random() * width;
+
+        this.y =
+            Math.random() * height;
+
+        this.size =
+            Math.random() * 2.3 + .3;
+
+        this.speed =
+            Math.random() * .5 + .08;
+
+        this.alpha =
+            Math.random();
+
+        this.direction =
+            Math.random() > .5 ? 1 : -1;
+    }
+
+    update(){
+
+        this.y -= this.speed;
+
+        this.x +=
+            Math.sin(this.y * .01) * .12;
+
+        this.alpha +=
+            .015 * this.direction;
+
+        if(this.alpha >= 1){
+
+            this.alpha = 1;
+            this.direction = -1;
+        }
+
+        if(this.alpha <= .1){
+
+            this.alpha = .1;
+            this.direction = 1;
+        }
+
+        if(this.y < -10){
+
+            this.y =
+                height + 10;
+
+            this.x =
+                Math.random() * width;
+        }
+    }
+
+    draw(){
+
+        ctx.beginPath();
+
+        ctx.arc(
+            this.x,
+            this.y,
+            this.size,
+            0,
+            Math.PI * 2
+        );
+
+        ctx.fillStyle =
+            `rgba(255,220,70,${this.alpha})`;
+
+        ctx.shadowBlur = 15;
+
+        ctx.shadowColor =
+            "#ffd000";
+
+        ctx.fill();
+    }
+}
+
+
+function createParticles(){
+
+    particles = [];
+
+    const amount =
+        Math.min(
+            280,
+            Math.floor(
+                width * height / 4000
+            )
+        );
+
+    for(
+        let i = 0;
+        i < amount;
+        i++
+    ){
+
+        particles.push(
+            new Particle()
+        );
+    }
+}
+
+
+createParticles();
+
+
+function animate(){
+
+    ctx.clearRect(
+        0,
+        0,
+        width,
+        height
+    );
+
+    particles.forEach(
+        particle => {
+
+            particle.update();
+            particle.draw();
+
+        }
+    );
+
+    requestAnimationFrame(
+        animate
+    );
+}
+
+
+animate();
+
+
+window.addEventListener(
+    "resize",
+    createParticles
+);
+
+
+/* =========================================
+   PÉTALOS FLOTANDO
+========================================= */
+
+function createPetal(){
+
+    const petal =
+        document.createElement("div");
+
+    petal.className =
+        "floatingPetal";
+
+    petal.style.left =
+        Math.random() * 100 + "%";
+
+    petal.style.animationDuration =
+        Math.random() * 7 + 7 + "s";
+
+    petal.style.animationDelay =
+        Math.random() * 8 + "s";
+
+    document.querySelector(".scene")
+        .appendChild(petal);
+}
+
+
+for(
+    let i = 0;
+    i < 35;
+    i++
+){
+
+    createPetal();
+}
+
+
+/* =========================================
+   ESTRELLAS
+========================================= */
+
+function createStar(){
+
+    const star =
+        document.createElement("div");
+
+    star.className =
+        "star";
+
+    star.innerHTML =
+        Math.random() > .5
+        ? "✦"
+        : "✧";
+
+    star.style.left =
+        Math.random() * 96 + "%";
+
+    star.style.top =
+        Math.random() * 92 + "%";
+
+    star.style.fontSize =
+        Math.random() * 14 + 8 + "px";
+
+    star.style.animationDelay =
+        Math.random() * 3 + "s";
+
+    document.querySelector(".scene")
+        .appendChild(star);
+}
+
+
+for(
+    let i = 0;
+    i < 38;
+    i++
+){
+
+    createStar();
+}
+
+
+/* =========================================
+   DESTELLOS
+========================================= */
+
+function createSpark(){
+
+    const spark =
+        document.createElement("div");
+
+    spark.className =
+        "spark";
+
+    spark.style.left =
+        Math.random() * 100 + "%";
+
+    spark.style.top =
+        Math.random() * 100 + "%";
+
+    spark.style.width =
+        Math.random() * 5 + 2 + "px";
+
+    spark.style.height =
+        spark.style.width;
+
+    document.querySelector(".scene")
+        .appendChild(spark);
+
+    setTimeout(
+        () => spark.remove(),
+        2500
+    );
+}
+
+
+setInterval(
+    createSpark,
+    130
+);
+
+
+/* =========================================
+   FLORES EXTRA PEQUEÑAS
+========================================= */
+
+function createTinyFlower(){
+
+    const flower =
+        document.createElement("div");
+
+    flower.innerHTML =
+        "🌻";
+
+    flower.style.position =
+        "absolute";
+
+    flower.style.left =
+        Math.random() * 96 + "%";
+
+    flower.style.top =
+        Math.random() * 94 + "%";
+
+    flower.style.fontSize =
+        Math.random() * 14 + 8 + "px";
+
+    flower.style.opacity =
+        Math.random() * .6 + .3;
+
+    flower.style.filter =
+        "drop-shadow(0 0 8px #ffd000)";
+
+    flower.style.zIndex = "4";
+
+    flower.style.animation =
+        "flowerFloat " +
+        (Math.random() * 4 + 3) +
+        "s ease-in-out infinite";
+
+    document.querySelector(".scene")
+        .appendChild(flower);
+}
+
+
+for(
+    let i = 0;
+    i < 30;
+    i++
+){
+
+    createTinyFlower();
+}
+
+</script>
+
+</body>
+</html>
